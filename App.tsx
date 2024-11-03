@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import ItemsListScreen from './screens/ItemsListScreen';
+import ItemsTableScreen from './screens/ItemsTableScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Tab = createMaterialTopTabNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Tab.Navigator
+                screenOptions={{
+                    tabBarLabelStyle: { fontSize: 14 },
+                    tabBarStyle: { backgroundColor: 'royalblue' },
+                    tabBarIndicatorStyle: { backgroundColor: 'white' },
+                }}
+            >
+                <Tab.Screen name="ItemsList" component={ItemsListScreen} options={{ title: 'AMOUNTS' }} />
+                <Tab.Screen name="ItemsTable" component={ItemsTableScreen} options={{ title: 'GRID' }} />
+            </Tab.Navigator>
+        </NavigationContainer>
+    );
+};
+
+export default App;
